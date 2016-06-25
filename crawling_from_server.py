@@ -57,7 +57,7 @@ for link in page.links[700:701]:
         'geo_info':geo_dict
 
     }
-data_dict
+
 import six.moves.cPickle as pickle
 # save data
 with open("data_dict.dat", "wb") as f:
