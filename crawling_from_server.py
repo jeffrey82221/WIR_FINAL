@@ -15,7 +15,8 @@ page = wikipedia.page('台灣古蹟列表')
 
 data_dict = dict()
 count = 0
-for link in page.links[200:210]:
+
+for link in page.links[700:701]:
     count=count+1
     print(count,link)
     site_page = wikipedia.page(link)
@@ -33,31 +34,31 @@ for link in page.links[200:210]:
         }
 
     except:
-        print('no geo_info')
+        print('no geo_info:',link)
         geo_dict=None
     try:
         event_lists,sentences = get_clean_events(site_page)
         wiki_dict={
+            "url":site_page.url
             "sentences":sentences,
             "event_lists":event_lists,
             "links":site_page.links,
             "historical_word_count":len("。".join(get_value_list(event_lists,'description'))),
             "historical_description_count":len(event_lists),
             "total_word_count":len("。".join(sentences)),
-            "total_description_count":len(sentences)
+            "total_description_count":len(sentences),
+
         }
-        print("no wiki info")
     except:
+        print("no wiki info:",link)
         wiki_dict=None
     data_dict[link]={
         'wiki':wiki_dict,
         'geo_info':geo_dict
 
     }
-
 data_dict
-
 import six.moves.cPickle as pickle
 # save data
-with open("geo_info.dat", "wb") as f:
-    pickle.dump(jsons_dicts, f, protocol=1)
+with open("data_dict.dat", "wb") as f:
+    pickle.dump(data_dict, f, protocol=1)
