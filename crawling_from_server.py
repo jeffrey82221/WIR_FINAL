@@ -16,7 +16,7 @@ page = wikipedia.page('台灣古蹟列表')
 data_dict = dict()
 count = 0
 
-for link in page.links[700:701]:
+for link in page.links:
     count=count+1
     print(count,link)
     site_page = wikipedia.page(link)
@@ -39,7 +39,7 @@ for link in page.links[700:701]:
     try:
         event_lists,sentences = get_clean_events(site_page)
         wiki_dict={
-            "url":site_page.url
+            "url":site_page.url,
             "sentences":sentences,
             "event_lists":event_lists,
             "links":site_page.links,
