@@ -1,7 +1,7 @@
 from util_package import *
 def get_places(site_name,constrain_set=None):
-    key   = "AIzaSyBqJjkdH1kTeEJMfILog4w-Wez9M9URZag"
-    token = "EAALoPr8WJz4BACuIz1hSKsDdez4DRztUghLXsEzQKZB92ssnv8kOR1YYdUB2ZCTU1i3DLHRSkWZA3eH0ZBYOnZBPZCGKaBX7H17Kv6wtPQYUEhgjkrVb7LtOXo4m5OodgNRZCKVLXZAnZAAmGbvZCaonfz33ZAmW4wsiKQZD"
+    key   = "AIzaSyBpk_fl186DGDalxmf2MSzG1126EFDBauM"
+    #token = "EAALoPr8WJz4BACuIz1hSKsDdez4DRztUghLXsEzQKZB92ssnv8kOR1YYdUB2ZCTU1i3DLHRSkWZA3eH0ZBYOnZBPZCGKaBX7H17Kv6wtPQYUEhgjkrVb7LtOXo4m5OodgNRZCKVLXZAnZAAmGbvZCaonfz33ZAmW4wsiKQZD"
     import json
     import sys
     import urllib
@@ -38,7 +38,9 @@ def get_places(site_name,constrain_set=None):
         return " ".join(query_list)
 
     jsongeocode = get_json_from_google(site_name,key)
+
     if jsongeocode['status'] != 'OK':
+        print(jsongeocode['status'])
         return None
     # reselect site
     if 'place_id' not in jsongeocode['predictions'][0]:
@@ -47,6 +49,7 @@ def get_places(site_name,constrain_set=None):
 
 
     if jsongeocode['status'] != 'OK':
+        print(jsongeocode['status'])
         return None
     id  = jsongeocode['predictions'][0]['place_id']
 
@@ -58,6 +61,7 @@ def get_places(site_name,constrain_set=None):
 
 
     if jsongeocode['status'] != 'OK':
+        print(jsongeocode['status'])
         return None
 
     return jsongeocode
@@ -69,7 +73,7 @@ def get_places(site_name,constrain_set=None):
     #return jsongeocode['data']
 
 
-#site_name = "三崁店社"
+#site_name = "中正紀念堂"
 #get_places(site_name,constrain_set=constrain_set)
 #input = "三崁店"
 #input = '台南孔廟'
