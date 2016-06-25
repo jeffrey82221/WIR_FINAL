@@ -19,7 +19,11 @@ count = 0
 for link in page.links:
     count=count+1
     print(count,link)
-    site_page = wikipedia.page(link)
+    try:
+        site_page = wikipedia.page(link)
+    except:
+        "cannot match with any wiki page"
+        continue
     geo_dict = dict()
     wiki_dict = dict()
     try:
