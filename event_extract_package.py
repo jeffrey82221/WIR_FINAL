@@ -213,9 +213,6 @@ def event_year_correct(event_lists):
             if len(with_year_time)>0:
                 for time in loss_year_time:
                     time['年']=with_year_time[0]['年']
-                print(event['description'])
-                print(with_year_time)
-                print(loss_year_time)
             elif(len(with_year_time)>1):
                 print('ERROR:more then one time element have year : Please choose one!')
     return event_lists
@@ -227,8 +224,6 @@ def add_loss_year(event_lists):
         for time in event['time'].values():
             #print(len(time['年']),len(time['月']),len(time['日']))
             if len(time['年'])==0 and len(time['月'])==1:
-                print(event['description'])
-                print('loss year')
                 time['年']=previous_time['年']
             #print(time['年'],time['月'],time['日'])
         if len(time['年'])==1:
