@@ -83,3 +83,29 @@ def tokenize(name, stopwords):
         else:
             tokens.append(term[0])
     return tokens
+
+def find_parensis(string):
+    end = 1
+    cut_offs = []
+    for i in range(10):
+        front,end = string.find('（'),string.find('）')
+        if(front==-1 or end==-1):
+            break
+        if '年' in string[front:end+1]:
+            cut_offs.append(string[front:end+1])
+            string=string.replace(string[front:end+1],'')
+        else:
+            string=string[:front]+'『'+string[front+1:]
+            string=string[:end]+'』'+string[end+1:]
+
+    return string,cut_offs
+
+
+def get_value_list(dict_list,key):
+    result = []
+    for dic in dict_list:
+        try:
+            result.append(dic[key])
+        except:
+            result.append(None)
+    return result
