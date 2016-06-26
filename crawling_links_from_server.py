@@ -5,8 +5,6 @@ import six.moves.cPickle as pickle
 with open("data_dict2.dat", 'rb') as f:
     data_dict = pickle.load(f)
 
-import pandas as pd
-
 new_data_dict = dict()
 for key in data_dict.keys():
     if data_dict[key]['geo_info'] != None and data_dict[key]['wiki'] != None:
@@ -17,7 +15,6 @@ key = list(new_data_dict.keys())[0]
 all_links = []
 for key in new_data_dict.keys():
     all_links.extend(new_data_dict[key]['wiki']['links'])
-
 
 link_set = set(all_links)
 link_set
@@ -33,8 +30,6 @@ def get_json_from_page(page):
     cat_constrain_set = set(tokenize(HanziConv.toTraditional("。".join(page.categories)),stopwords))
     summary_constrain_set = set(tokenize(HanziConv.toTraditional("。".join(page.summary)),stopwords))
     return get_places(page.title,cat_constrain_set|summary_constrain_set)
-
-
 
 data_dict = dict()
 count = 0
