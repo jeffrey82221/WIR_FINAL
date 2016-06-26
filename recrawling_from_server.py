@@ -12,9 +12,6 @@ def get_json_from_page(page):
     return get_places(page.title,cat_constrain_set|summary_constrain_set)
 
 
-
-
-
 import pickle
 import six.moves.cPickle as pickle
 # load data
